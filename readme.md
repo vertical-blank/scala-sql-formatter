@@ -1,5 +1,6 @@
 
 # scala-sql-formatter
+[![Build Status](https://travis-ci.org/vertical-blank/scala-sql-formatter.png?branch=master)](https://travis-ci.org/vertical-blank/scala-sql-formatter)
 
 SQL Formatter for Scala.
 
