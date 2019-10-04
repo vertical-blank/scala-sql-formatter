@@ -91,9 +91,9 @@ lazy val publishingSettings = Seq(
   ),
   developers := List(
     Developer(
-      id = "hoge",
-      name = "hoge",
-      email = "hoge@gmail.com",
+      id = "vertical-blank",
+      name = "Yohei Yamana",
+      email = "fixeight@gmail.com",
       url = url("https://github.com/vertical-blank")
     )
   )
