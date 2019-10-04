@@ -17,13 +17,13 @@ object SqlFormatter extends AbstractSqlFormatter {
     Facade.format(sql, js.Dictionary("language" -> language.name, "indent" -> indent))
 
   def format(sql: String,
-             params: Map[String, String],
+             params: Map[String, Any],
              language: SQLLanguage,
              indent: String): String =
     Facade.format(sql, js.Dictionary("language" -> language.name, "indent" -> indent, "params" -> params.toJSDictionary))
 
   def format(sql: String,
-             params: Seq[String],
+             params: Seq[Any],
              language: SQLLanguage,
              indent: String): String =
     Facade.format(sql, js.Dictionary("language" -> language.name, "indent" -> indent, "params" -> params.toJSArray))
