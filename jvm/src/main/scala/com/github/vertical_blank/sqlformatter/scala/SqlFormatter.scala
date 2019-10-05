@@ -5,17 +5,16 @@ import com.github.vertical_blank.sqlformatter.{SqlFormatter => JSqlFormatter}
 
 object SqlFormatter extends AbstractSqlFormatter {
   def format(sql: String,
-             language: SQLLanguage,
-             indent: String): String = JSqlFormatter.of(language.name).format(sql, indent)
+             dialect: SqlDialect,
+             indent: String): String = JSqlFormatter.of(dialect.name).format(sql, indent)
 
-
-  def format(sql: String,
+  def formatWithNamedParams(sql: String,
              params: Map[String, Any],
-             language: SQLLanguage,
-             indent: String): String = JSqlFormatter.of(language.name).format(sql, indent, params.asJava)
+             dialect: SqlDialect,
+             indent: String): String = JSqlFormatter.of(dialect.name).format(sql, indent, params.asJava)
 
-  def format(sql: String,
+  def formatWithIndexedParams(sql: String,
              params: Seq[Any],
-             language: SQLLanguage,
-             indent: String): String = JSqlFormatter.of(language.name).format(sql, indent, params.asJava)
+             dialect: SqlDialect,
+             indent: String): String = JSqlFormatter.of(dialect.name).format(sql, indent, params.asJava)
 }

@@ -38,8 +38,6 @@ abstract class BaseTest(sqlFormatter: AbstractSqlFormatter) extends FunSuite {
   }
 
   test("withNamedParams") {
-    val namedParams = Map("foo" -> "'bar'")
-
     val formatted = """|SELECT
                        |  *
                        |FROM
@@ -47,7 +45,7 @@ abstract class BaseTest(sqlFormatter: AbstractSqlFormatter) extends FunSuite {
                        |WHERE
                        |  foo = 'bar'""".stripMargin
 
-    assert(sqlFormatter.format("SELECT * FROM table WHERE foo = @foo", namedParams) == formatted)
+    assert(sqlFormatter.formatWithNamedParams("SELECT * FROM table WHERE foo = @foo", params = Map("foo" -> "'bar'")) == formatted)
   }
 
   test("withIndexedParams") {
@@ -59,6 +57,6 @@ abstract class BaseTest(sqlFormatter: AbstractSqlFormatter) extends FunSuite {
                        |WHERE
                        |  foo = 'bar'""".stripMargin
 
-    assert(sqlFormatter.format("SELECT * FROM table WHERE foo = ?", Seq("'bar'")) == formatted)
+    assert(sqlFormatter.formatWithIndexedParams("SELECT * FROM table WHERE foo = ?", params = Seq("'bar'")) == formatted)
   }
 }
