@@ -70,6 +70,9 @@ lazy val sharedSettings = Seq(
 )
 
 lazy val publishingSettings = Seq(
+  pgpSecretRing := file("local.secring.gpg"),
+  pgpPublicRing := file("local.pubring.gpg"),
+  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishMavenStyle       := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ =>
