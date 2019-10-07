@@ -86,4 +86,4 @@ WHERE
   foo = 'bar'
 ```
 
-Same as the `format` method, `formatWithNamedParams` and `formatWithIndexedParams` accept `dialect` and `indent` parameters.
+Same as the `format` method, both `formatWithNamedParams` and `formatWithIndexedParams` accept `FormatConfig`.
