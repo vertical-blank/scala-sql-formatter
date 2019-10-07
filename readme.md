@@ -9,7 +9,23 @@ This is a bridge to these libraries.
 - Running on jvm, calls [https://github.com/vertical-blank/sql-formatter](https://github.com/vertical-blank/sql-formatter)
 - Running on js, calls [https://github.com/zeroturnaround/sql-formatter](https://github.com/zeroturnaround/sql-formatter)
 
-## Examples
+## Usage
+
+### Scala (on JVM)
+
+```sbt
+libraryDependencies += "com.github.vertical-blank" %% "scala-sql-formatter" % "1.0.0"
+```
+
+### Scala.js
+
+```sbt
+libraryDependencies += "com.github.vertical-blank" %%% "scala-sql-formatter" % "1.0.0"
+
+scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) }
+```
+
+### Examples
 
 You can easily use `com.github.vertical_blank.sqlformatter.scala.SqlFormatter` :
 
