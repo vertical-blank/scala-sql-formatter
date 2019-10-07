@@ -28,12 +28,12 @@ FROM
 
 ### Dialect
 
-You can pass dialect :
+You can pass dialect with `FormatConfig` :
 
 ```scala
 SqlFormatter.format(
   "SELECT *",
-  dialect = SqlDialect.CouchbaseN1QL)
+  FormatConfig(dialect = SqlDialect.CouchbaseN1QL))
 ```
 
 Currently just four SQL dialects are supported:
@@ -46,10 +46,12 @@ Currently just four SQL dialects are supported:
 ### Format
 
 Defaults to two spaces.
-You can pass indent string to `format` :
+You can pass indent string with `FormatConfig` to `format` :
 
 ```scala
-SqlFormatter.format("SELECT * FROM table1", indent = "    ")
+SqlFormatter.format(
+  "SELECT * FROM table1",
+  FormatConfig(indent = "    "))
 ```
 
 This will output:
