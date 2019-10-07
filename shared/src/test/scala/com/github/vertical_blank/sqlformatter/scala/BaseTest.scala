@@ -34,7 +34,7 @@ abstract class BaseTest(sqlFormatter: AbstractSqlFormatter) extends FunSuite {
                        |    table""".stripMargin
 
     assert(sqlFormatter
-      .format("SELECT foo, bar, CASE baz WHEN 'one' THEN 1 WHEN 'two' THEN 2 ELSE 3 END FROM table", indent = "    ") == formatted)
+      .format("SELECT foo, bar, CASE baz WHEN 'one' THEN 1 WHEN 'two' THEN 2 ELSE 3 END FROM table", FormatConfig(indent = "    ")) == formatted)
   }
 
   test("withNamedParams") {

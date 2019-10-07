@@ -12,19 +12,16 @@ private[scala] object Facade extends js.Object {
 
 object SqlFormatter extends AbstractSqlFormatter {
   def format(sql: String,
-             dialect: SqlDialect,
-             indent: String): String =
-    Facade.format(sql, js.Dictionary("language" -> dialect.name, "indent" -> indent))
+             config: FormatConfig): String =
+    Facade.format(sql, js.Dictionary("language" -> config.dialect.name, "indent" -> config.indent))
 
   def formatWithNamedParams(sql: String,
              params: Map[String, Any],
-             dialect: SqlDialect,
-             indent: String): String =
-    Facade.format(sql, js.Dictionary("language" -> dialect.name, "indent" -> indent, "params" -> params.toJSDictionary))
+             config: FormatConfig): String =
+    Facade.format(sql, js.Dictionary("language" -> config.dialect.name, "indent" -> config.indent, "params" -> params.toJSDictionary))
 
   def formatWithIndexedParams(sql: String,
              params: Seq[Any],
-             dialect: SqlDialect,
-             indent: String): String =
-    Facade.format(sql, js.Dictionary("language" -> dialect.name, "indent" -> indent, "params" -> params.toJSArray))
+             config: FormatConfig): String =
+    Facade.format(sql, js.Dictionary("language" -> config.dialect.name, "indent" -> config.indent, "params" -> params.toJSArray))
 }
