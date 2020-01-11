@@ -15,13 +15,13 @@ This is a bridge to these libraries.
 ### Scala (on JVM)
 
 ```sbt
-libraryDependencies += "com.github.vertical-blank" %% "scala-sql-formatter" % "1.0.0"
+libraryDependencies += "com.github.vertical-blank" %% "scala-sql-formatter" % "1.0.1"
 ```
 
 ### Scala.js
 
 ```sbt
-libraryDependencies += "com.github.vertical-blank" %%% "scala-sql-formatter" % "1.0.0"
+libraryDependencies += "com.github.vertical-blank" %%% "scala-sql-formatter" % "1.0.1"
 
 scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) }
 ```
