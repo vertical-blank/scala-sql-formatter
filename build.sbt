@@ -2,7 +2,7 @@ import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 import ReleaseTransformations._
 
 scalaVersion in ThisBuild       := "2.12.10"
-crossScalaVersions in ThisBuild := Seq("2.11.12", scalaVersion.value, "2.13.0")
+crossScalaVersions in ThisBuild := Seq("2.11.12", scalaVersion.value, "2.13.1")
 organization in ThisBuild       := "com.github.vertical-blank"
 
 onChangedBuildSource in Global  := ReloadOnSourceChanges
@@ -19,6 +19,7 @@ lazy val root = project
 lazy val scala_sql_formatter = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Full)
   .in(file("."))
+  .enablePlugins(JSDependenciesPlugin)
   .settings(moduleName := "scala-sql-formatter", sharedSettings, publishingSettings)
   .jvmSettings(
     libraryDependencies += "com.github.vertical-blank" % "sql-formatter" % "1.0"
@@ -65,7 +66,7 @@ lazy val sharedSettings = Seq(
   scalacOptions ++= commonScalacOptions.value,
   (scalacOptions in Test) ~= (_.filterNot(_ == "-Xfatal-warnings")),
   libraryDependencies ++= Seq(
-    "org.scalatest" %%% "scalatest" % "3.1.0" % Test
+    "org.scalatest" %%% "scalatest" % "3.1.1" % Test
   )
 )
 

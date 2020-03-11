@@ -1,8 +1,8 @@
 package com.github.vertical_blank.sqlformatter.scala
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-abstract class BaseTest(sqlFormatter: AbstractSqlFormatter) extends FunSuite {
+abstract class BaseTest(sqlFormatter: AbstractSqlFormatter) extends AnyFunSuite {
 
   test("simple") {
     val formatted = """|SELECT
