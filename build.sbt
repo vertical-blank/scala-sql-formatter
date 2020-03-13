@@ -1,11 +1,11 @@
 import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 import ReleaseTransformations._
 
-scalaVersion in ThisBuild       := "2.12.10"
+scalaVersion in ThisBuild       := "2.12.11"
 crossScalaVersions in ThisBuild := Seq("2.11.12", scalaVersion.value, "2.13.1")
 organization in ThisBuild       := "com.github.vertical-blank"
 
-onChangedBuildSource in Global  := ReloadOnSourceChanges
+onChangedBuildSource in Global := ReloadOnSourceChanges
 
 lazy val root = project
   .in(file("."))
@@ -15,23 +15,17 @@ lazy val root = project
   .aggregate(scala_sql_formatterJVM, scala_sql_formatterJS)
   .dependsOn(scala_sql_formatterJVM, scala_sql_formatterJS)
 
-
 lazy val scala_sql_formatter = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Full)
   .in(file("."))
-  .enablePlugins(JSDependenciesPlugin)
-  .settings(moduleName := "scala-sql-formatter", sharedSettings, publishingSettings)
-  .jvmSettings(
-    libraryDependencies += "com.github.vertical-blank" % "sql-formatter" % "1.0"
-  )
-  .jsSettings(
-    jsDependencies += "org.webjars.npm" % "sql-formatter" % "2.3.3" / "2.3.3/dist/sql-formatter.js" commonJSName "sqlFormatter",
-    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
+  .settings(
+    moduleName := "scala-sql-formatter",
+    sharedSettings,
+    publishingSettings
   )
 
 lazy val scala_sql_formatterJVM = scala_sql_formatter.jvm
 lazy val scala_sql_formatterJS = scala_sql_formatter.js
-
 
 lazy val commonScalacOptions = Def.setting {
   Seq(
@@ -71,16 +65,14 @@ lazy val sharedSettings = Seq(
 )
 
 lazy val publishingSettings = Seq(
-  pgpSecretRing := file("local.secring.gpg"),
-  pgpPublicRing := file("local.pubring.gpg"),
-  name          := "scala-sql-formatter",
-  description   := "SQL Formatter for Scala",
+  pgpSecretRing                 := file("local.secring.gpg"),
+  pgpPublicRing                 := file("local.pubring.gpg"),
+  name                          := "scala-sql-formatter",
+  description                   := "SQL Formatter for Scala",
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
-  publishMavenStyle       := true,
-  publishArtifact in Test := false,
-  pomIncludeRepository := { _ =>
-    false
-  },
+  publishMavenStyle             := true,
+  publishArtifact in Test       := false,
+  pomIncludeRepository          := { _ => false },
   publishTo := Some(
     if (isSnapshot.value)
       Opts.resolver.sonatypeSnapshots
@@ -88,7 +80,9 @@ lazy val publishingSettings = Seq(
       Opts.resolver.sonatypeStaging
   ),
   licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
-  homepage := Some(url("https://github.com/vertical-blank/scala-sql-formatter")),
+  homepage := Some(
+    url("https://github.com/vertical-blank/scala-sql-formatter")
+  ),
   scmInfo := Some(
     ScmInfo(
       url("https://github.com/vertical-blank/scala-sql-formatter"),
@@ -127,3 +121,6 @@ lazy val noPublishSettings = Seq(
   publishLocal    := {},
   publishArtifact := false
 )
+
+addCommandAlias("check", ";scalafmtCheckAll;scalafmtSbtCheck")
+addCommandAlias("fmt", ";scalafmtAll;scalafmtSbt")
