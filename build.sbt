@@ -21,7 +21,7 @@ lazy val scala_sql_formatter = crossProject(JSPlatform, JVMPlatform)
   .in(file("."))
   .settings(moduleName := "scala-sql-formatter", sharedSettings, publishingSettings)
   .jvmSettings(
-    libraryDependencies += "com.github.vertical-blank" % "sql-formatter" % "1.0"
+    libraryDependencies += "com.github.vertical-blank" % "sql-formatter" % "1.0.1"
   )
   .jsSettings(
     jsDependencies += "org.webjars.npm" % "sql-formatter" % "2.3.3" / "2.3.3/dist/sql-formatter.js" commonJSName "sqlFormatter",
