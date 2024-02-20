@@ -65,7 +65,7 @@ lazy val sharedSettings = Seq(
   scalacOptions ++= commonScalacOptions.value,
   (scalacOptions in Test) ~= (_.filterNot(_ == "-Xfatal-warnings")),
   libraryDependencies ++= Seq(
-    "org.scalatest" %%% "scalatest" % "3.2.0" % Test
+    "org.scalatest" %%% "scalatest" % "3.2.18" % Test
   )
 )
 
